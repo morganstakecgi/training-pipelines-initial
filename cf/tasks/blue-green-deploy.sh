@@ -43,13 +43,13 @@ set -x
 # Fetch the app names assigned to the hostname
 app_names=`(cf curl $apps_url | jq -r '.resources[].entity.name')`
 
-
 for name in $app_names; do
     if [ "$name" != "$app_name" ]
     then
-        echo "deleting $name"
-        cf unmap-route $CF_APP_NAME $name
-        cf delete $name -f -r
+      echo "unmapping route: " $CF_HOSTNAME "from app " $name
+      cf map-route $name $CF_DOMAIN --hostname $CF_HOSTNAME
+      echo "deleting app... " $name
+      cf delete $name -f
     fi
-    cf delete-route $CF_DOMAIN --hostname $green_app_route
+    cf delete-route $CF_DOMAIN --hostname $green_app_route -f
 done
