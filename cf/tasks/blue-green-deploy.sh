@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -e
+echo "test Morgan & Sulman"
+ls -r artifact
 
 version=`cat version/number`
 
@@ -45,6 +47,7 @@ app_names=`(cf curl $apps_url | jq -r '.resources[].entity.name')`
 for name in $app_names; do
     if [ "$name" != "$app_name" ]
     then
-      # TO DO: clean up blue
+        echo "deleting $name"
+        cf delete $name -f -r
     fi
 done
