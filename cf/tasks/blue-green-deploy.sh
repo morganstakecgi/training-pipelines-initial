@@ -49,6 +49,7 @@ for name in $app_names; do
     if [ "$name" != "$app_name" ]
     then
         echo "deleting $name"
+        cf unmap-route $name $green_app_route
         cf delete $name -f -r
     fi
 done
