@@ -2,7 +2,8 @@
 
 set -e
 echo "test Morgan & Sulman"
-ls -r artifact
+ls -R
+pwd
 
 version=`cat version/number`
 
