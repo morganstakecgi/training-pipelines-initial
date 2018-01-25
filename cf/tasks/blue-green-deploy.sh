@@ -1,9 +1,6 @@
 #!/bin/bash
 
 set -e
-echo "test Morgan & Sulman"
-ls -R
-pwd
 
 version=`cat version/number`
 
